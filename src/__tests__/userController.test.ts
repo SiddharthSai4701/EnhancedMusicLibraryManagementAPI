@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../index"; // Ensure app is exported from `index.ts`
+import app from "../../src/index"; // Ensure app is exported from `index.ts`
 
 describe("User API Tests", () => {
   it("should return a welcome message", async () => {
