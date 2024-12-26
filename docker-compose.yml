@@ -9,7 +9,13 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     environment:
-      - DATABASE_URL=postgres://user:password@db:5432/music_library
+      - DATABASE_NAME=music_library
+      - DATABASE_USER=user
+      - DATABASE_PASSWORD=password
+      - DATABASE_HOST=db
+      - DATABASE_DIALECT=postgres
+      - JWT_SECRET=your_jwt_secret
+      - PORT=3000
     depends_on:
       - db
 
