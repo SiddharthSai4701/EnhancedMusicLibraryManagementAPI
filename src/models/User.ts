@@ -1,4 +1,12 @@
-import { Table, Column, Model, DataType } from "sequelize-typescript";
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  BelongsTo,
+  ForeignKey,
+} from "sequelize-typescript";
+import { Organization } from "./Organization";
 
 @Table({ tableName: "users", timestamps: false })
 export class User extends Model {
@@ -20,4 +28,14 @@ export class User extends Model {
     allowNull: false,
   })
   role!: "Admin" | "Editor" | "Viewer";
+
+  @ForeignKey(() => Organization)
+  @Column({
+    type: DataType.UUID,
+    allowNull: false,
+  })
+  organization_id!: string;
+
+  @BelongsTo(() => Organization)
+  organization!: Organization;
 }

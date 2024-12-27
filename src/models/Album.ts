@@ -4,8 +4,10 @@ import {
   Model,
   DataType,
   ForeignKey,
+  BelongsTo,
 } from "sequelize-typescript";
 import { Artist } from "./Artist";
+import { Organization } from "./Organization";
 
 @Table({ tableName: "albums", timestamps: false })
 export class Album extends Model {
@@ -28,4 +30,11 @@ export class Album extends Model {
   @ForeignKey(() => Artist)
   @Column({ type: DataType.UUID })
   artist_id!: string;
+
+  @ForeignKey(() => Organization)
+  @Column({ type: DataType.UUID, allowNull: false })
+  organization_id!: string;
+
+  @BelongsTo(() => Organization)
+  organization!: Organization;
 }

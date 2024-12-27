@@ -1,5 +1,5 @@
-import { Table, Column, Model, DataType } from "sequelize-typescript";
-
+import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
+import { Organization } from "./Organization";
 @Table({ tableName: "artists", timestamps: false })
 export class Artist extends Model {
   @Column({
@@ -17,4 +17,11 @@ export class Artist extends Model {
 
   @Column({ type: DataType.BOOLEAN, defaultValue: true })
   hidden!: boolean;
+
+  @ForeignKey(() => Organization)
+  @Column({ type: DataType.UUID, allowNull: false })
+  organization_id!: string;
+
+  @BelongsTo(() => Organization)
+  organization!: Organization;
 }
